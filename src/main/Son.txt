@@ -1,46 +1,47 @@
 20/07/16
 @일반 게시판(board)
 ++
-private int board_num;			// 글 번호(PK)
+private int board_num;					// 글 번호(PK)
 private String board_writer;			// 작성자(FK)
-private String board_subject;		// 글 제목
-private String board_content;		// 글 내용
+private String board_subject;			// 글 제목
+private String board_content;			// 글 내용
 private int board_readcount;			// 조회수
-private int board_ref;			// 글 번호
-private int board_re_step;			// 답글
-private int board_re_level;			// 답답글
-private Date board_reg_date;		// 작성일
-private String board_del;			// 삭제 유무
+private int board_ref;					// 글 번호
+private int board_re_step;				// 답글
+private int board_re_level;				// 답답글
+private Date board_reg_date;			// 작성일
+private String board_del;				// 삭제 유무
 
 --
-//private String board_passwd;		// 비밀글 설정 관련
+//private String board_passwd;			// 비밀글 설정 관련
 
 
 @ 고객센터 (cstm_board)
-	ㄴ많이하는 Q&A
+	ㄴ많이하는 Q&A(collapse)겸 Notice
 ++
-private int cstm_num;			// 글 번호(PK)
-private String cstm_writer;			// 작성자(FK)
-//private String cstm_sort;			// 질문 구분?(넣을게 없음)
+private int cstm_num;					// 글 번호(PK)
+private String cstm_writer;				// 작성자(FK)
+//private String cstm_sort;				// 질문 구분?(넣을게 없음)
 private String cstm_subject;			// 글 제목
-private String cstm_content;		// 글 내용
-private int cstm_readcount;			// 조회수
-private String cstm_passwd;			// 비밀글 설정 관련
-private int cstm_ref;			// 글 번호
-private int cstm_re_step;			// 답글
-private int cstm_re_level;			// 답답글
-private Date cstm_reg_date;			// 작성일
-private String cstm_del;			// 삭제 유무
+private String cstm_content;			// 글 내용
+private int cstm_readcount;				// 조회수
+private String cstm_passwd;				// 비밀글 설정 관련
+private int cstm_ref;					// 글 번호
+private int cstm_re_step;				// 답글
+private int cstm_re_level;				// 답답글
+private Date cstm_reg_date;				// 작성일
+private String cstm_del;				// 삭제 유무
 
-@ 많이하는 Q&A?
-1. 게시판 형식?
-2. 이미 collapse 형식? <-
 
-@Review
+@ Review(사진)
+	++업데이트 빠르고 bla bla
+rvue_num
+rvue_writer
+rvue_subject
+rvue_content
+rvue_
 
-@Notice
-
-@구매 환전 내역?
+@ 구매 환전 내역?
 id
 date
 country
