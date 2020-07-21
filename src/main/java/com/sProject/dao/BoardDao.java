@@ -10,7 +10,7 @@ public interface BoardDao {
 
 	List<Board> list(Board board);
 
-	Board select(int num);
+	Board select(int board_num);
 
 	int getMaxNum();
 

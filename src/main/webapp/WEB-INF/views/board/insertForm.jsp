@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,15 +17,16 @@
 		<table>
 			<tr>
 				<td>제목</td>
-				<td><input type="text" name="subject" required="required"></td>
+				<td><input type="text" name="board_subject" required="required"></td>
+				<td>${path}</td>
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" name="writer" required="required"></td>
+				<td><input type="text" name="board_writer" required="required"></td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><input type="text" name="content" required="required"></td>
+				<td><input type="text" name="board_content" required="required"></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="확인"></td>

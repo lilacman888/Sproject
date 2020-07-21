@@ -24,8 +24,8 @@
 				${search} like '%'||#{keyword}||'%'
 			</if>
 			<if test="keyword != null and search=='subcon'">
-				subject like '%'||#{keyword}||'%' or
-				content like '%'||#{keyword}||'%'
+				board_subject like '%'||#{keyword}||'%' or
+				board_content like '%'||#{keyword}||'%'
 			</if>
 		</where>			
 			 order by board_ref desc, board_re_step) a )
@@ -33,24 +33,24 @@
 	</select>
 	
 	<select id="getTotal" parameterType="board" resultType="int">
-		select count(*) from baord
+		select count(*) from board
 		<where>
 			<if test="keyword != null and search != 'subcon'">
 				${search} like '%'||#{keyword}||'%'
 			</if>
 			<if test="keyword != null and search == 'subcon'">
-				subject like '%'||#{keyword}||'%' or
-				content like '%'||#{keyword}||'%'
+				board_subject like '%'||#{keyword}||'%' or
+				board_content like '%'||#{keyword}||'%'
 			</if>
 		</where>
 	</select>
 	
 	<select id="select" parameterType="int" resultType="board">
-		select * from board where num=#{num}
+		select * from board where board_num=#{board_num}
 	</select>
 	
 	<select id="getMaxNum" resultType="int">
-		select nvl(max(num), 0) + 1 from board
+		select nvl(max(board_num), 0) + 1 from board
 	</select>
 	<update id="updateRe" parameterType="board">
 		update board set board_re_step = board_re_step +1
@@ -58,9 +58,9 @@
 	</update>
 	
 	<insert id="insert" parameterType="board" >
-		<selectKey keyProperty="num" order="BEFORE" resultType="int">
+		<!-- <selectKey keyProperty="num" order="BEFORE" resultType="int">
 			select nvl(max(num),0) + 1 from board
-		</selectKey>
+		</selectKey> -->
 		insert into board values(#{board_num},#{board_writer},#{board_subject},#{board_content},
 				0,#{board_ref},#{board_re_step},#{board_re_level},sysdate,'n')
 	</insert>

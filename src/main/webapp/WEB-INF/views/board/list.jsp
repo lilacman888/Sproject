@@ -53,17 +53,18 @@
 	</table>
 	<form action="${path}/list/pageNum/1">
 		<select name="search">
-			<option value="subject"
-				<c:if test="${search=='subject'}">selected="selected"</c:if>>제목</option>
-			<option value="content"
-				<c:if test="${search=='content'}">selected="selected"</c:if>>내용</option>
-			<option value="writer"
-				<c:if test="${search=='writer'}">selected="selected"</c:if>>작성자</option>
+			<option value="board_subject"
+				<c:if test="${search=='board_subject'}">selected="selected"</c:if>>제목</option>
+			<option value="board_content"
+				<c:if test="${search=='board_content'}">selected="selected"</c:if>>내용</option>
+			<option value="board_writer"
+				<c:if test="${search=='board_writer'}">selected="selected"</c:if>>작성자</option>
+				<!-- subcon -> xml파일에서 getTotal()로 적용 -->
 			<option value="subcon"
 				<c:if test="${search=='subcon'}">selected="selected"</c:if>>제목+내용</option>
 		</select>
 		<input type="text" name="keyword">
-		<input type="submit" value="확인">
+		<input type="submit" value="검색">
 	</form>
 	<ul>
 		<c:if test="${not empty keyword}">

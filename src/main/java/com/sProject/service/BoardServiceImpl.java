@@ -24,8 +24,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Board selcet(int num) {
-		return dao.select(num);
+	public Board selcet(int board_num) {
+		return dao.select(board_num);
 	}
 
 	@Override

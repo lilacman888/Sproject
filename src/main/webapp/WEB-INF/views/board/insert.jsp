@@ -11,7 +11,7 @@
 	<c:if test="${result>0}">
 		<script type="text/javascript">
 			alert("입력 성공");
-			location.href="/list";
+			location.href="list";
 		</script>
 	</c:if>
 	<c:if test="${result<=0}">

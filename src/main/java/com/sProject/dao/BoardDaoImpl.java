@@ -24,13 +24,13 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public Board select(int num) {
-		return sst.selectOne("boardns.select", num);
+	public Board select(int board_num) {
+		return sst.selectOne("boardns.select", board_num);
 	}
 
 	@Override
 	public int getMaxNum() {
-		return sst.selectOne("boardns.getMaxnum");
+		return sst.selectOne("boardns.getMaxNum");
 	}
 
 	@Override
