@@ -22,5 +22,25 @@ public class BoardServiceImpl implements BoardService {
 	public List<Board> list(Board board) {
 		return dao.list(board);
 	}
+
+	@Override
+	public Board selcet(int num) {
+		return dao.select(num);
+	}
+
+	@Override
+	public int getMaxNum() {
+		return dao.getMaxNum();
+	}
+
+	@Override
+	public void updateRe(Board board) {
+		dao.updateRe(board);
+	}
+
+	@Override
+	public int insert(Board board) {
+		return dao.insert(board);
+	}
 	
 }

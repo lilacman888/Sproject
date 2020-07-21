@@ -14,8 +14,9 @@ public class PagingPgm {
 		this.rowPerPage = rowPerPage;
 		this.currentPage = currentPage;
 		
-		totalPage = (int) Math.ceil((double) total / rowPerPage);
-		startPage = currentPage - (currentPage - 1) % pagePerBlk;
+		totalPage = (int) Math.ceil((double) total / rowPerPage);	//ceil 올림값(1.3 = 2.0)
+		//
+		startPage = currentPage - (currentPage - 1) % pagePerBlk;	// 1 = 0.1	10
 		endPage = startPage + pagePerBlk - 1;
 		
 		if (endPage > totalPage)

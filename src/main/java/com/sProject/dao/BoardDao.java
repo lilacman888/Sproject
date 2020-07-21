@@ -10,4 +10,12 @@ public interface BoardDao {
 
 	List<Board> list(Board board);
 
+	Board select(int num);
+
+	int getMaxNum();
+
+	void updateRe(Board board);
+
+	int insert(Board board);
+
 }

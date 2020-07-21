@@ -10,4 +10,13 @@ public interface BoardService {
 
 	List<Board> list(Board board);
 
+	Board selcet(int num);
+
+	int getMaxNum();
+
+	void updateRe(Board board);
+
+	int insert(Board board);
+
+
 }

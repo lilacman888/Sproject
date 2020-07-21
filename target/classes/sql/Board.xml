@@ -4,16 +4,16 @@
 <mapper namespace="boardns">
 	<!-- Use type aliases to avoid typing the full classname every time. -->
 	<resultMap id="boardResult"      type="board">
-		<result property="num"	     column="num" />
-		<result property="writer"    column="writer" />
-		<result property="subject"   column="subject" />
-		<result property="content"   column="content" />
-		<result property="readcount" column="readcount" />
-		<result property="ref"     	 column="ref" />
-		<result property="re_step"	 column="re_step" />
-		<result property="re_level"  column="re_level" />
-		<result property="reg_date"	 column="reg_date" />
-		<result property="del" 		 column="del" />
+		<result property="board_num"	     column="board_num" />
+		<result property="board_writer"   	 column="board_writer" />
+		<result property="board_subject"  	 column="board_subject" />
+		<result property="board_content"  	 column="board_content" />
+		<result property="board_readcount"	 column="board_readcount" />
+		<result property="board_ref"     	 column="board_ref" />
+		<result property="board_re_step"	 column="board_re_step" />
+		<result property="board_re_level" 	 column="board_re_level" />
+		<result property="board_reg_date"	 column="board_reg_date" />
+		<result property="board_del" 		 column="board_del" />
 	</resultMap>
 	
 	<select id="list" parameterType="board" resultMap="boardResult">
@@ -28,7 +28,7 @@
 				content like '%'||#{keyword}||'%'
 			</if>
 		</where>			
-			 order by ref desc,re_step) a )
+			 order by board_ref desc, board_re_step) a )
 			where rn between #{startRow} and #{endRow}
 	</select>
 	
@@ -44,4 +44,24 @@
 			</if>
 		</where>
 	</select>
+	
+	<select id="select" parameterType="int" resultType="board">
+		select * from board where num=#{num}
+	</select>
+	
+	<select id="getMaxNum" resultType="int">
+		select nvl(max(num), 0) + 1 from board
+	</select>
+	<update id="updateRe" parameterType="board">
+		update board set board_re_step = board_re_step +1
+		where board_ref and board_re_step > #{board_re_step}
+	</update>
+	
+	<insert id="insert" parameterType="board" >
+		<selectKey keyProperty="num" order="BEFORE" resultType="int">
+			select nvl(max(num),0) + 1 from board
+		</selectKey>
+		insert into board values(#{board_num},#{board_writer},#{board_subject},#{board_content},
+				0,#{board_ref},#{board_re_step},#{board_re_level},sysdate,'n')
+	</insert>
 </mapper>
