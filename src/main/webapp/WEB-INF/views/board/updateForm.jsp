@@ -8,24 +8,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${path}/insert" method="post">
+	<form action="${path}/update/pageNum/${pageNum}" method="post">
 		<input type="hidden" name="board_num" value="${board_num}">
-		<input type="hidden" name="board_ref" value="${board_ref}">
-		<input type="hidden" name="board_re_step" value="${board_re_step}">
-		<input type="hidden" name="board_re_level" value="${board_re_level}">
-		<input type="hidden" name="pageNum" value="${pageNum}">
 		<table>
 			<tr>
 				<td>제목</td>
-				<td><input type="text" name="board_subject" required="required"></td>
+				<td><input type="text" name="board_subject" required="required" value="${board.board_subject}"></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" name="board_writer" required="required"></td>
+				<td><input type="text" name="board_writer" required="required" value="${board.board_writer}"></td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><input type="text" name="board_content" required="required"></td>
+				<td><input type="text" name="board_content" required="required" value="${board.board_content}"></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="확인"></td>

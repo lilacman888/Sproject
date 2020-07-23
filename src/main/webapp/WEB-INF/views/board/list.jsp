@@ -30,12 +30,12 @@
 					</c:if>
 					<c:if test="${board.board_del != 'y'}">
 						<td>
-							<%-- <a href="${path}/view/num/${board.board_num}/pageNum/${pp.currentPage}" class=""> --%>
-							<a href="#">
+							<a href="${path}/content/num/${board.board_num}/pageNum/${pp.currentPage}" class="">
+							<!-- <a href="#"> -->
 								<c:if test="${board.board_re_level>0}">
 <%-- 								<img alt="" src="${path }/images/level.gif" height="2" width="${board.re_level *5 }">
 									<img alt="" src="${path }/images/re.gif"> --%>
-									"  "
+									&nbsp;&nbsp;[re]:
 								</c:if>
 								${board.board_subject}
 								<%-- <c:if test="${board.board_readcount>30}">
@@ -44,7 +44,10 @@
 							</a>
 						</td>
 						<td>${board.board_writer}</td>
-						<td>${board.board_reg_date}</td>
+						<td>
+							<%-- ${board.board_reg_date} --%>
+							<fmt:formatDate value="${board.board_reg_date}" pattern="yy/MM/dd HH:mm"/>
+						</td>
 						<td>${board.board_readcount}</td>
 					</c:if>
 				</tr>
@@ -94,6 +97,6 @@
 			</c:if>
 		</c:if>
 	</ul>
-	<a href="${path}/insertForm">글 입력</a>${path}
+	<a href="${path}/insertForm">글 입력</a>
 </body>
 </html>

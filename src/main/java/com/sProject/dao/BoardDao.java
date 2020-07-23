@@ -18,4 +18,6 @@ public interface BoardDao {
 
 	int insert(Board board);
 
+	void update(int num);
+
 }

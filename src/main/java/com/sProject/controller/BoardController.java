@@ -66,17 +66,17 @@ public class BoardController {
 	@RequestMapping("/insertForm")
 	public String initInsert() {
 		System.out.println("/insertForm");
-		return "redirect:insertForm/nm/null/pageNum/1";
+		return "redirect:insertForm/num/null/pageNum/1";
 	}
-	@RequestMapping("/insertForm/nm/{nm}/pageNum/{pageNum}")
-	public String insertForm(@PathVariable String nm, @PathVariable String pageNum, Model model) {
+	@RequestMapping("/insertForm/num/{num}/pageNum/{pageNum}")
+	public String insertForm(@PathVariable String num, @PathVariable String pageNum, Model model) {
 		System.out.println("/insertForm2");
-		if(nm.equals("null"))
-			nm = null;
+		if(num.equals("null"))
+			num = null;
 		int board_num = 0, board_ref = 0, board_re_level = 0, board_re_step = 0;
-		if(nm != null) {
-			board_num = Integer.parseInt(nm);
-			Board board = bs.selcet(board_num);
+		if(num != null) {
+			board_num = Integer.parseInt(num);
+			Board board = bs.select(board_num);
 			board_ref = board.getBoard_ref();
 			board_re_level = board.getBoard_re_level();
 			board_re_step = board.getBoard_re_step();
@@ -101,8 +101,30 @@ public class BoardController {
 			board.setBoard_ref(board_number);
 		}
 		board.setBoard_num(board_number);
+//		String ip = request.getRemoteAddr();
+//		board.setIp(ip);
 		int result = bs.insert(board);
 		model.addAttribute("result", result);
 		return "board/insert";
+	}
+	
+	@RequestMapping("/content/num/{num}/pageNum/{pageNum}")
+	public String content(@PathVariable int num, @PathVariable String pageNum, Model model) {
+		System.out.println("/content");
+//		if(session.id != id){			//id 값이 같으면 조회수 증가 X
+			bs.selectUpdate(num);
+//		}
+		Board board = bs.select(num);
+		model.addAttribute("board", board);
+		model.addAttribute("pageNum", pageNum);
+		return "board/content";
+	}
+	@RequestMapping("/updateForm/num/{num}/pageNum/{pageNum}")
+	public String updateForm(@PathVariable int num,@PathVariable String pageNum, Model model) {
+		System.out.println("/updateForm");
+		Board board = bs.select(num);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("board", board);
+		return "board/updateForm";
 	}
 }

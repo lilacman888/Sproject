@@ -42,6 +42,11 @@ public class BoardDaoImpl implements BoardDao {
 	public int insert(Board board) {
 		return sst.insert("boardns.insert", board);
 	}
+
+	@Override
+	public void update(int num) {
+		sst.update("selectUpdate", num);
+	}
 	
 	
 }

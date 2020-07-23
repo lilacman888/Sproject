@@ -54,7 +54,7 @@
 	</select>
 	<update id="updateRe" parameterType="board">
 		update board set board_re_step = board_re_step +1
-		where board_ref and board_re_step > #{board_re_step}
+		where board_ref=#{board_ref} and board_re_step > #{board_re_step}
 	</update>
 	
 	<insert id="insert" parameterType="board" >
@@ -64,4 +64,8 @@
 		insert into board values(#{board_num},#{board_writer},#{board_subject},#{board_content},
 				0,#{board_ref},#{board_re_step},#{board_re_level},sysdate,'n')
 	</insert>
+	
+	<update id="selectUpdate" parameterType="int">
+		update board set board_readcount=board_readcount +1 where board_num=#{board_num}
+	</update>
 </mapper>

@@ -24,7 +24,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Board selcet(int board_num) {
+	public Board select(int board_num) {
 		return dao.select(board_num);
 	}
 
@@ -41,6 +41,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int insert(Board board) {
 		return dao.insert(board);
+	}
+
+	@Override
+	public void selectUpdate(int num) {
+		dao.update(num);
 	}
 	
 }
