@@ -10,7 +10,7 @@ public interface BoardService {
 
 	List<Board> list(Board board);
 
-	Board select(int num);
+	Board select(int board_num);
 
 	int getMaxNum();
 
@@ -18,7 +18,13 @@ public interface BoardService {
 
 	int insert(Board board);
 
-	void selectUpdate(int num);
+	void selectUpdate(int board_num);
+
+	int update(Board board);
+
+	void delete(int board_num);
+
+	List<Board> all();
 
 
 }

@@ -12,6 +12,7 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 <ul>
+	<li><a href="date">date</a></li>
 	<li><a href="list">일반게시판</a></li>
 	<li><a href="#">리뷰게시판</a></li>
 	<li><a href="#">고객센터</a></li>

@@ -44,8 +44,23 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void selectUpdate(int num) {
-		dao.update(num);
+	public void selectUpdate(int board_num) {
+		dao.selectUpdate(board_num);
+	}
+
+	@Override
+	public int update(Board board) {
+		return dao.update(board);
+	}
+
+	@Override
+	public void delete(int board_num) {
+		dao.delete(board_num);
+	}
+
+	@Override
+	public List<Board> all() {
+		return dao.all();
 	}
 	
 }

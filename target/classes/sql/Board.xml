@@ -15,6 +15,9 @@
 		<result property="board_reg_date"	 column="board_reg_date" />
 		<result property="board_del" 		 column="board_del" />
 	</resultMap>
+	<select id="all" resultMap="boardResult">
+		select * from board
+	</select>
 	
 	<select id="list" parameterType="board" resultMap="boardResult">
 		select * from (select a.*,rowNum rn from (
@@ -67,5 +70,14 @@
 	
 	<update id="selectUpdate" parameterType="int">
 		update board set board_readcount=board_readcount +1 where board_num=#{board_num}
+	</update>
+	
+	<update id="update" parameterType="board">
+		update board set board_writer=#{board_writer},board_subject=#{board_subject},board_content=#{board_content} 
+		where board_num=#{board_num}
+	</update>
+	
+	<update id="delete" parameterType="int">
+		update board set board_del='y' where board_num=#{board_num}
 	</update>
 </mapper>

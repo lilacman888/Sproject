@@ -1,3 +1,4 @@
+<%@page import="java.sql.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
@@ -18,7 +19,7 @@
 		</tr>
 		<c:if test="${empty list}">
 			<tr>
-				<th colspan="5">등록되 데이터가 없습니다.</th>
+				<th colspan="5">등록된 데이터가 없습니다.</th>
 			</tr>		
 		</c:if>
 		<c:if test="${not empty list}">
@@ -45,10 +46,12 @@
 						</td>
 						<td>${board.board_writer}</td>
 						<td>
-							<%-- ${board.board_reg_date} --%>
-							<fmt:formatDate value="${board.board_reg_date}" pattern="yy/MM/dd HH:mm"/>
+							${board.board_readcount}
 						</td>
-						<td>${board.board_readcount}</td>
+						<td>
+							<%-- ${board.board_reg_date} --%>
+							<fmt:formatDate value="${board.board_reg_date}" pattern="yy/MM/dd hh:mm:ss"/>
+						</td>
 					</c:if>
 				</tr>
 			</c:forEach>

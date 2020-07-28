@@ -18,6 +18,12 @@ public interface BoardDao {
 
 	int insert(Board board);
 
-	void update(int num);
+	void selectUpdate(int board_num);
+
+	int update(Board board);
+
+	void delete(int board_num);
+
+	List<Board> all();
 
 }

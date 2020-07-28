@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sProject.model.Board;
 import com.sProject.service.BoardService;
@@ -24,10 +25,16 @@ public class BoardController {
 		System.out.println("/home");
 		return "home";
 	}
+	@RequestMapping("/date")
+	public String date(Model model) {
+		System.out.println("/date");
+		List<Board> list = bs.all();
+		model.addAttribute("list", list);
+		return "board/date";
+	}
 	@RequestMapping("/list")
 	public String initBoard_list() {
 		System.out.println("/initBoard_list");
-//		return "list";
 //		return "board/list";
 //		return "redirect:board/list";
 		return "redirect:list/pageNum/1"; //오류 - 값이 없나?(list.jsp작성 후 설정해보기)
@@ -126,5 +133,21 @@ public class BoardController {
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("board", board);
 		return "board/updateForm";
+	}
+	@RequestMapping("/update/pageNum/{pageNum}")
+	public String update(Board board,@PathVariable String pageNum, Model model) {
+		System.out.println("/update");
+		int result = bs.update(board);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("board", board);
+		return "board/update";
+	}
+	@RequestMapping(value="/delete/num/{num}/pageNum/{pageNum}")
+	public String delete(@PathVariable int num,@PathVariable String pageNum, Model model) {
+		System.out.println("/delete");
+		bs.delete(num);
+		model.addAttribute("pageNum", pageNum);
+		return "redirect:/list";
 	}
 }

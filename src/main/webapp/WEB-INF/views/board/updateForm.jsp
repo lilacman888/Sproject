@@ -9,7 +9,7 @@
 </head>
 <body>
 	<form action="${path}/update/pageNum/${pageNum}" method="post">
-		<input type="hidden" name="board_num" value="${board_num}">
+		<input type="hidden" name="board_num" value="${board.board_num}">
 		<table>
 			<tr>
 				<td>제목</td>
