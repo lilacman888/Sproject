@@ -6,68 +6,61 @@
 <head>
 <meta charset="UTF-8">
 <title>date</title>
-</head>
-<body>
 <script type="text/javascript">
-function test(a){
-	alert(a + 'test');
-}
-function timeBefore(reg_date){
-    console.log(reg_date);
-    // 현재시간
-    var now = moment(); 
-    console.log(now);
-    // 글쓴 시간 '<c:out value="${board.board_reg_date}"/>'
-    var reg_date = new Date("${reg_date}");
-    var writeday = moment(reg_date);
-    console.log(writeday);
-    var minus;
-	    if(now.get('year') > writeday.get('year')){
-	        minus= now.get('year')-writeday.get('year');
-	        console.log(minus+"년 전");
-	        return (minus+"년 전");
-	    }else if(now.get('month') > writeday.get('month')){
-	        minus= now.get('month')-writeday.get('month');
-	        return (minus+"달 전");
-	    }else if(now.get('date') > writeday.get('date')){
-	        minus= now.get('date')-writeday.get('date');
-	        return (minus+"일 전");
-	    }else if(now.get('date') == writeday.get('date')){
-	        var nowTime = now.getTime();
-	        var writeTime = writeday.getTime();
-	        if(nowTime>writeTime){
-	            sec = parseInt(nowTime - writeTime) / 1000;
-	            day = parseInt(sec/60/60/24);
-	            sec = (sec - (day * 60 * 60 * 24));
-	            hour = parseInt(sec/60/60);
-	            sec = (sec - (hour*60*60));
-	            min = parseInt(sec/60);
-	            sec = parseInt(sec-(min*60));
-	            if(hour>0){
-	            	return (hour+"시간 전");
-	            }else if(min>0){
-	            	return (min+"분 전");
-	            }else if(sec>0){
-	            	return (sec+"방금 전");
-	            }
-	        }
-	    }
+function timeBefore(targetDate){
+	/* 작성일 */
+    const writeDay = new Date(targetDate);
+	
+	const sec = 60;
+	const min = 3600;
+	const day = 86400;
+	const month = 2592000;
+	const year = 31536000;
+	
+	/* 현재 - 작성일 */
+	const gap = Math.floor((new Date().getTime() - writeDay) / 1000);
+	const gap1 = Math.floor((new Date().getTime() - writeDay));
+	
+	var interval = Math.floor(gap/year);
+	if(interval >= 1){
+		return interval + '년 전';
+	}
+	var interval = Math.floor(gap/month);
+	if(interval >= 1){
+		return  interval + '달 전';
+	}
+	var interval = Math.floor(gap/day);
+	if(interval >= 1){
+		return interval + '일 전';
+	}
+	var interval = Math.floor(gap/min);
+	if(interval >= 1){
+/* 		console.log(new Date); */
+		console.log(new Date().getTime());
+		console.log(writeDay);
+		console.log(new Date().getTime() - writeDay.getTime());
+		console.log(gap);
+		console.log(gap1);
+		console.log(min);
+		console.log(gap1/min);
+		return interval + '분 전';
+	}
+	return '방금 전';
 }
 </script>
-	<div>
-		Date
-		
-	</div>
+
+</head>
+<body>
 	<c:if test="${not empty list}">
 		<c:forEach var="board" items="${list}">
-    		<fmt:formatDate value="${board.board_reg_date}" var="reg_date" pattern="yyyy/MM/dd"/>
-			<ul>
-				<li>${reg_date}</li>
-			</ul>
-			<input type="button" onclick="timeBefore('${reg_date}')" value="button"/>
-<%-- 			<input type="button" onclick="timeBefore(${reg_date})" value="button"/> --%>
+    		<fmt:formatDate value="${board.board_reg_date}" var="targetDate" pattern="yyyy-MM-dd'T'HH:mm:ssZ"/>
+    		
+				<span id="${board.board_num}"></span>
+				<span>=<fmt:formatDate value="${board.board_reg_date}" pattern="yyyy-MM-dd'T'HH:mm:ssZ"/></span><br>
+				<script type="text/javascript">
+					document.getElementById("<c:out value='${board.board_num}'/>").innerHTML = timeBefore("<c:out value='${targetDate}'/>");
+				</script>
 		</c:forEach>
 	</c:if>
-		
 </body>
 </html>

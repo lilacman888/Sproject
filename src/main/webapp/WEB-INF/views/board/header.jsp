@@ -4,5 +4,3 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <script src="${path}/js/jQuery.js"></script>
-<script src="${path}/js/moment.min.js"></script>
-<script src="${path}/js/moment-with-locales.min.js"></script>

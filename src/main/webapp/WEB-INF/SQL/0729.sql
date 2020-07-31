@@ -5,7 +5,7 @@ select * from board;
 
 drop table board;
 
-SELECT TO_CHAR(cast(board_reg_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') FROM board;
+SELECT TO_CHAR(cast(board_reg_date as timestamp) at time zone 'UTC', 'dd-mon-yyyy hh24:mi:ss.ff tzr') FROM board;
 create table board(
 	board_num number primary key,		-- key
 	board_writer varchar2(20) not null,
@@ -17,10 +17,10 @@ create table board(
 	board_re_level number not null,
 	board_reg_date date not null,
 	board_del char(1)
-)
+);
 
-insert into board values((nvl(max(num),0) + 1),'TEST', 'TEST','TEST',0,(select nvl(max(num),0) + 1),0,0,sysdate,'n');
-
+insert into board values((select nvl(max(board_num),0) + 1 from board),'TEST', 'TEST','TEST',0,(select nvl(max(board_num),0) + 1 from board),0,0,sysdate,'n');
+commit;
 create table board5 (
 	num number primary key, -- key
 	writer varchar2(20) not null, -- 작성자
