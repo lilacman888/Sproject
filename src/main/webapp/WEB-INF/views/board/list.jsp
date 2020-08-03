@@ -9,6 +9,7 @@
 <title>일반 게시판</title>
 </head>
 <body>
+<input type="button" value="home" onClick="location.href='${path}/home'"/>
 	<table>
 		<tr>
 			<th>No</th>

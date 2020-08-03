@@ -3,6 +3,7 @@ package com.sProject.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sProject.model.Board;
 import com.sProject.service.BoardService;
@@ -19,6 +21,38 @@ import com.sProject.service.PagingPgm;
 public class BoardController {
 	@Autowired
 	private BoardService bs;
+	
+//	로그인 테스트용
+	@RequestMapping(value ="/login", method=RequestMethod.GET)
+	public String login(Board board,Model model, HttpServletRequest request) {
+		System.out.println("/login");
+		String id = "test";
+		String cp = request.getContextPath();
+		System.out.println("cp(request.getContextPath() = " + cp);
+		String test = board.getPath();
+		System.out.println(test);
+		String path = board.getPath().replaceFirst(cp, "");
+		System.out.println("path = " + path);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("id", id);
+		model.addAttribute("id", id);
+		return "redirect:" + path;
+	}
+	//로그아웃 테스트용
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(Board board,Model model, HttpServletRequest request) {
+		String cp = request.getContextPath();
+		System.out.println("cp(request.getContextPath() = " + cp);
+		String test = board.getPath();
+		System.out.println(test);
+		String path = board.getPath().replaceFirst(cp, "");
+		System.out.println("path = " + path);
+		System.out.println("/logout");
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "redirect:" + path;
+	}
 	
 	@RequestMapping("/home")
 	public String home() {

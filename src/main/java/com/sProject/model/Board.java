@@ -14,6 +14,24 @@ public class Board {
 	private Date board_reg_date;			// 작성일
 	private String board_del;				// 삭제 유무
 	
+//	test
+	private String id;
+	private String path;
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 	// page
 	private int startRow;
 	private int endRow;
