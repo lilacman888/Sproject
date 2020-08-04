@@ -11,6 +11,7 @@
 				+ location.search;
 	}
 </script>
+<hr>
 <body onload="init()">
 	<form method="get">
 		<input type="hidden" name="path" id="path" />
@@ -25,3 +26,4 @@
 	<input type="button" value="path test"
 		onClick="alert(location.pathname + location.search)">
 </body>
+<hr>

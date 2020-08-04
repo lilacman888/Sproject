@@ -40,14 +40,11 @@
 		<tr>
 			<td colspan="4">
 				<input type="button" value="답글달기" onClick="location.href='${path}/insertForm/num/${board.board_num}/pageNum/${pageNum}'">
-				<input type="button" value="글 수정" onClick="location.href='${path}/updateForm/num/${board.board_num}/pageNum/${pageNum}'">
-			<!-- session.id가 같으면 수정 버튼 생성 -->
-			<%-- <c:if test=""> --%>
-			<%-- </c:if> --%>
-				<%-- <input type="button" value="글 삭제" onClick="location.href='${path}/deleteForm/num/${board.board_num}/pageNum/${pageNum}'"> --%>
-				<input type="button" value="글 삭제" onClick="deleteCheck()">
-				<%-- <input type="hidden" name="num" value="${board.board_num}"> --%>
-				<input type="button" value="글 목록" onClick="location.href='${path}/list/pageNum/${pageNum}'">
+				<c:if test="${not empty sessionScope.id}">
+					<input type="button" value="글 수정" onClick="location.href='${path}/updateForm/num/${board.board_num}/pageNum/${pageNum}'">
+					<input type="button" value="글 삭제" onClick="deleteCheck()">
+				</c:if>
+					<input type="button" value="글 목록" onClick="location.href='${path}/list/pageNum/${pageNum}'">
 			</td>
 		</tr>
 		<tr>
