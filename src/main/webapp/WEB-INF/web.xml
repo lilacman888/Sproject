@@ -66,4 +66,24 @@
     <servlet-name>BoardServiceImpl</servlet-name>
     <url-pattern>/BoardServiceImpl</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LoginController</display-name>
+    <servlet-name>LoginController</servlet-name>
+    <servlet-class>com.sProject.controller.LoginController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginController</servlet-name>
+    <url-pattern>/LoginController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UploadController</display-name>
+    <servlet-name>UploadController</servlet-name>
+    <servlet-class>com.sProject.controller.UploadController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadController</servlet-name>
+    <url-pattern>/UploadController</url-pattern>
+  </servlet-mapping>
 </web-app>

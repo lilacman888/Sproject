@@ -16,10 +16,10 @@
 	<form method="get">
 		<input type="hidden" name="path" id="path" />
 		<c:if test="${empty sessionScope.id}">
-			<input type="submit" value="login" formaction="${path}/login">
+			<input type="submit" value="login" formaction="${path}/user/login">
 		</c:if>
 		<c:if test="${not empty sessionScope.id}">
-			<input type="submit" value="logout" formaction="${path}/logout">
+			<input type="submit" value="logout" formaction="${path}/user/logout">
 			<span>${id}님 환영합니다</span>
 		</c:if>
 	</form>
