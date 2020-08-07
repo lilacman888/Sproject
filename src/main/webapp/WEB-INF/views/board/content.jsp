@@ -34,21 +34,22 @@
 			<td><fmt:formatDate value="${board.board_reg_date}" pattern="yy/MM/dd hh:mm:ss"/></td>
 		</tr>
 		<tr>
+			<td>조회수</td>
+			<td>${board.board_readcount}</td>
+		</tr>
+		<tr>
 			<td>내용</td>
 			<td>${board.board_content}</td>
 		</tr>
 		<tr>
 			<td colspan="4">
 				<input type="button" value="답글달기" onClick="location.href='${path}/insertForm/num/${board.board_num}/pageNum/${pageNum}'">
-				<c:if test="${not empty sessionScope.id}">
+				<c:if test="${sessionScope.id == board.board_writer}">
 					<input type="button" value="글 수정" onClick="location.href='${path}/updateForm/num/${board.board_num}/pageNum/${pageNum}'">
 					<input type="button" value="글 삭제" onClick="deleteCheck()">
 				</c:if>
 					<input type="button" value="글 목록" onClick="location.href='${path}/list/pageNum/${pageNum}'">
 			</td>
-		</tr>
-		<tr>
-			
 		</tr>
 	</table>
 </form>

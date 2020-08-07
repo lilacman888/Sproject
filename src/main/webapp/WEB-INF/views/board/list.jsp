@@ -9,7 +9,6 @@
 <title>일반 게시판</title>
 </head>
 <body>
-<input type="button" value="home" onClick="location.href='${path}/home'"/>
 	<table>
 		<tr>
 			<th>No</th>
@@ -101,6 +100,9 @@
 			</c:if>
 		</c:if>
 	</ul>
+	<c:if test="${empty sessionScope.id}">
+		<a href="${path}/insertForm">글 입력</a>
+	</c:if>
 	<a href="${path}/insertForm">글 입력</a>
 </body>
 </html>

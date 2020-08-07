@@ -6,7 +6,6 @@ select to_char(board_reg_date,'HH24:mi:ss') from board;
 
 drop table board;
 
-SELECT TO_CHAR(cast(board_reg_date as timestamp) at time zone 'UTC', 'dd-mon-yyyy hh24:mi:ss.ff tzr') FROM board;
 create table board(
 	board_num number primary key,		-- key
 	board_writer varchar2(20) not null,
@@ -19,7 +18,7 @@ create table board(
 	board_reg_date date not null,
 	board_del char(1)
 );
-
+commit;
 insert into board values((select nvl(max(board_num),0) + 1 from board),'TEST', 'TEST','TEST',0,(select nvl(max(board_num),0) + 1 from board),0,0,sysdate,'n');
 commit;
 create table board5 (
@@ -96,3 +95,28 @@ select * from seq;
 select * from joindb;
 select join_code_seq.nextval from dual;
 commit;
+
+-- 댓글 게시판
+select * from tab;
+select * from seq;
+select * from board;
+
+create table board( num number,
+                	writer varchar2(20) not null,
+	    			email varchar2(30),
+                	subject varchar2(50) not null,
+                	passwd varchar2(20) not null,
+					reg_date timestamp not null,
+					readcount number default 0,
+					ref number not null,
+					re_step number not null,
+					re_level number not null,
+					content varchar2(2000) not null,
+					ip varchar2(20) not null,
+					constraint board_pk primary key(num) );
+
+create sequence board_seq 
+	start with 1
+	increment by 1
+	nocache;
+

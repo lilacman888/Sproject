@@ -8,8 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+		<div>${board_num}</div>
+		<div>${path}</div>
 	<form action="${path}/insert" method="post">
 		<input type="hidden" name="board_num" value="${board_num}">
+		<input type="hidden" name="board_num" value="${board_writer}">
 		<input type="hidden" name="board_ref" value="${board_ref}">
 		<input type="hidden" name="board_re_step" value="${board_re_step}">
 		<input type="hidden" name="board_re_level" value="${board_re_level}">
@@ -25,7 +28,14 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><input type="text" name="board_content" required="required"></td>
+				<td><textarea rows="" cols="" name="board_content" required="required"></textarea>
+			</tr>
+			<tr>
+				<td>첨부파일</td>
+				<td>
+					<input type="hidden" name="type" value="ajax"> 
+					<input type="file" name="file" /> <input type="submit" value="ajax으로 제출" />
+				</td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="확인"></td>

@@ -3,7 +3,10 @@ package com.sProject.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +20,9 @@ import com.sProject.service.PagingPgm;
 public class BoardController {
 	@Inject
 	private BoardService bs;
+	HttpServletRequest request;
+	HttpSession session = request.getSession();
+	String id = (String) session.getAttribute("id");
 	
 	@RequestMapping("/home")
 	public String home() {
@@ -74,7 +80,7 @@ public class BoardController {
 		return "redirect:insertForm/num/null/pageNum/1";
 	}
 	@RequestMapping("/insertForm/num/{num}/pageNum/{pageNum}")
-	public String insertForm(@PathVariable String num, @PathVariable String pageNum, Model model) {
+	public String insertForm(@PathVariable String num, @PathVariable String pageNum, Model model, HttpServletRequest request) {
 		System.out.println("/insertForm2");
 		if(num.equals("null"))
 			num = null;
@@ -86,6 +92,7 @@ public class BoardController {
 			board_re_level = board.getBoard_re_level();
 			board_re_step = board.getBoard_re_step();
 		}
+		model.addAttribute("board_writer", id);
 		model.addAttribute("board_num", board_num);
 		model.addAttribute("board_ref", board_ref);
 		model.addAttribute("board_re_level", board_re_level);
@@ -114,12 +121,16 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/content/num/{num}/pageNum/{pageNum}")
-	public String content(@PathVariable int num, @PathVariable String pageNum, Model model) {
+	public String content(@PathVariable int num, @PathVariable String pageNum, Model model, HttpServletRequest request) {
 		System.out.println("/content");
-//		if(session.id != id){			//id 값이 같으면 조회수 증가 X
-			bs.selectUpdate(num);
-//		}
 		Board board = bs.select(num);
+		System.out.println(id);
+		try {
+			if(!id.equals(board.getBoard_writer()))			//id 값이 같으면 조회수 증가 X
+				bs.selectUpdate(num);
+		} catch (Exception e) {
+			id = null;
+		}
 		model.addAttribute("board", board);
 		model.addAttribute("pageNum", pageNum);
 		return "board/content";
