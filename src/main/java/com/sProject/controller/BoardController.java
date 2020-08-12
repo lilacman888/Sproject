@@ -11,16 +11,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.sProject.model.Board;
 import com.sProject.service.BoardService;
 import com.sProject.service.PagingPgm;
 
 @Controller
+@SessionAttributes("sessionId")
 public class BoardController {
 	@Inject
 	private BoardService bs;
 	
+	@RequestMapping(value = "/testpage", method = RequestMethod.POST)
+	public ModelAndView testpaget(ModelAndView mv, Model model, @RequestParam("input_name")String input_name) {
+		mv.setViewName("test");
+		mv.addObject("name", input_name);
+		model.addAttribute("sessionId",input_name);
+		System.out.println("input_name = " + input_name);
+		return mv;
+	}
 	@RequestMapping("/home")
 	public String home() {
 		System.out.println("/home");

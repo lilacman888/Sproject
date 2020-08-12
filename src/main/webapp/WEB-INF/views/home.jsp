@@ -19,6 +19,7 @@
 	<li><a href="#">고객센터</a></li>
 	<li><a href="date">date</a></li>
 	<li><a href="uploadForm">upload test</a></li>
+	<li><a href="testpage">Test Page</a></li>
 </ul>
 </body>
 </html>
