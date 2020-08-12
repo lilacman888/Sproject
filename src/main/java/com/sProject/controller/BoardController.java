@@ -20,9 +20,6 @@ import com.sProject.service.PagingPgm;
 public class BoardController {
 	@Inject
 	private BoardService bs;
-	HttpServletRequest request;
-	HttpSession session = request.getSession();
-	String id = (String) session.getAttribute("id");
 	
 	@RequestMapping("/home")
 	public String home() {
@@ -92,7 +89,6 @@ public class BoardController {
 			board_re_level = board.getBoard_re_level();
 			board_re_step = board.getBoard_re_step();
 		}
-		model.addAttribute("board_writer", id);
 		model.addAttribute("board_num", board_num);
 		model.addAttribute("board_ref", board_ref);
 		model.addAttribute("board_re_level", board_re_level);
@@ -124,7 +120,8 @@ public class BoardController {
 	public String content(@PathVariable int num, @PathVariable String pageNum, Model model, HttpServletRequest request) {
 		System.out.println("/content");
 		Board board = bs.select(num);
-		System.out.println(id);
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
 		try {
 			if(!id.equals(board.getBoard_writer()))			//id 값이 같으면 조회수 증가 X
 				bs.selectUpdate(num);
